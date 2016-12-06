@@ -6,6 +6,58 @@
             <li class="nav-item">
                 <a class="nav-link navbar-toggler sidebar-toggle" href="#">&#9776;</a>
             </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="#">Users</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="#">Settings</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav float-xs-right hidden-md-down">
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="icon-bell"></i><span class="tag tag-pill tag-danger">5</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="icon-list"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
+            </li>
+            <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
+                    <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                    <span class="hidden-md-down">admin</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+
+                    <div class="dropdown-header text-xs-center">
+                        <strong>Account</strong>
+                    </div>
+
+                    <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="tag tag-info">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="tag tag-success">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="tag tag-danger">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="tag tag-warning">42</span></a>
+
+                    <div class="dropdown-header text-xs-center">
+                        <strong>Settings</strong>
+                    </div>
+
+                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="tag tag-default">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="tag tag-primary">42</span></a>
+                    <div class="divider"></div>
+                    <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
+            </li>
         </ul>
     </div>
 </header>
@@ -80,9 +132,255 @@
     <!-- /.conainer-fluid -->
 </main>
 
+<aside class="aside-menu">
+    <tabset>
+        <tab>
+            <template tabHeading><i class="icon-list"></i>
+            </template>
+            <div class="callout m-0 py-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>Today</b>
+                </small>
+            </div>
+            <hr class="transparent mx-1 my-0">
+            <div class="callout callout-info m-0 py-1">
+                <div class="avatar float-xs-right">
+                    <img src="assets/img/buildings/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                </div>
+                <div>Emergency trigger<br >
+                    <strong>Tottenham court road</strong>
+                </div>
+                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 1:30pm</small>
+                <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; SE1 1LP</small>
+            </div>
+            <hr class="mx-1 my-0">
+            <div class="callout callout-warning m-0 py-1">
+                <div class="avatar float-xs-right">
+                    <img src="assets/img/buildings/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                </div>
+                <div>Water alert<br >
+                    <strong>Liverpool street</strong>
+                </div>
+                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 11:00am</small>
+                <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; SW19 2AP</small>
+            </div>
+            <hr class="transparent mx-1 my-0">
+            <div class="callout m-0 py-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>Yesterday</b>
+                </small>
+            </div>
+            <hr class="transparent mx-1 my-0">
+            <div class="callout callout-danger m-0 py-1">
+                <div class="avatar float-xs-right">
+                    <img src="assets/img/buildings/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                </div>
+                <div>Overload on phase
+                    <strong>Lewisham High Street</strong>
+                </div>
+                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 4:00pm</small>
+                <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; SW11 6SA</small>
+            </div>
+            <hr class="mx-1 my-0">
+            <div class="callout callout-warning m-0 py-1">
+                <div class="avatar float-xs-right">
+                    <img src="assets/img/buildings/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                </div>
+                <div>Phase overload close
+                    <strong>Lewisham High Street</strong>
+                </div>
+                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 3:30pm</small>
+                <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; SW11 6SA</small>
+            </div>
+            <hr class="mx-1 my-0">
+            <div class="callout callout-info m-0 py-1">
+                <div class="avatar float-xs-right">
+                    <img src="assets/img/buildings/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                </div>
+                <div>Water limit close
+                    <strong>Liverpool street</strong>
+                </div>
+                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 11:00pm</small>
+                <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; SW19 2AP</small>
+            </div>
+            <hr class="mx-1 my-0">
+        </tab>
+        <tab>
+            <template tabHeading><i class="icon-speech"></i>
+            </template>
+            <div class="p-1">
+                <div class="message">
+                    <div class="py-1 pb-3 mr-1 float-xs-left">
+                        <div class="avatar">
+                            <img src="assets/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <span class="avatar-status tag-success"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <small class="text-muted">Lukasz Holeczek</small>
+                        <small class="text-muted float-xs-right mt-q">1:52 PM</small>
+                    </div>
+                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                </div>
+                <hr>
+                <div class="message">
+                    <div class="py-1 pb-3 mr-1 float-xs-left">
+                        <div class="avatar">
+                            <img src="assets/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <span class="avatar-status tag-success"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <small class="text-muted">Lukasz Holeczek</small>
+                        <small class="text-muted float-xs-right mt-q">1:52 PM</small>
+                    </div>
+                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                </div>
+                <hr>
+                <div class="message">
+                    <div class="py-1 pb-3 mr-1 float-xs-left">
+                        <div class="avatar">
+                            <img src="assets/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <span class="avatar-status tag-success"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <small class="text-muted">Lukasz Holeczek</small>
+                        <small class="text-muted float-xs-right mt-q">1:52 PM</small>
+                    </div>
+                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                </div>
+                <hr>
+                <div class="message">
+                    <div class="py-1 pb-3 mr-1 float-xs-left">
+                        <div class="avatar">
+                            <img src="assets/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <span class="avatar-status tag-success"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <small class="text-muted">Lukasz Holeczek</small>
+                        <small class="text-muted float-xs-right mt-q">1:52 PM</small>
+                    </div>
+                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                </div>
+                <hr>
+                <div class="message">
+                    <div class="py-1 pb-3 mr-1 float-xs-left">
+                        <div class="avatar">
+                            <img src="assets/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <span class="avatar-status tag-success"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <small class="text-muted">Lukasz Holeczek</small>
+                        <small class="text-muted float-xs-right mt-q">1:52 PM</small>
+                    </div>
+                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                </div>
+            </div>
+        </tab>
+        <tab>
+            <template tabHeading><i class="icon-settings"></i>
+            </template>
+            <div class="p-1">
+                <h6>Settings</h6>
+
+                <div class="aside-options">
+                    <div class="clearfix mt-2">
+                        <small><b>Option 1</b>
+                        </small>
+                        <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                            <input type="checkbox" class="switch-input" checked>
+                            <span class="switch-label" data-on="On" data-off="Off"></span>
+                            <span class="switch-handle"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
+                    </div>
+                </div>
+
+                <div class="aside-options">
+                    <div class="clearfix mt-1">
+                        <small><b>Option 2</b>
+                        </small>
+                        <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                            <input type="checkbox" class="switch-input">
+                            <span class="switch-label" data-on="On" data-off="Off"></span>
+                            <span class="switch-handle"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
+                    </div>
+                </div>
+
+                <div class="aside-options">
+                    <div class="clearfix mt-1">
+                        <small><b>Option 3</b>
+                        </small>
+                        <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                            <input type="checkbox" class="switch-input">
+                            <span class="switch-label" data-on="On" data-off="Off"></span>
+                            <span class="switch-handle"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="aside-options">
+                    <div class="clearfix mt-1">
+                        <small><b>Option 4</b>
+                        </small>
+                        <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                            <input type="checkbox" class="switch-input" checked>
+                            <span class="switch-label" data-on="On" data-off="Off"></span>
+                            <span class="switch-handle"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <hr>
+                <h6>System Utilization</h6>
+
+                <div class="text-uppercase mb-q mt-2">
+                    <small><b>CPU Usage</b>
+                    </small>
+                </div>
+                <progress class="progress progress-xs progress-info m-0" value="25" max="100">25%</progress>
+                <small class="text-muted">348 Processes. 1/4 Cores.</small>
+
+                <div class="text-uppercase mb-q mt-h">
+                    <small><b>Memory Usage</b>
+                    </small>
+                </div>
+                <progress class="progress progress-xs progress-warning m-0" value="70" max="100">70%</progress>
+                <small class="text-muted">11444GB/16384MB</small>
+
+                <div class="text-uppercase mb-q mt-h">
+                    <small><b>SSD 1 Usage</b>
+                    </small>
+                </div>
+                <progress class="progress progress-xs progress-danger m-0" value="95" max="100">95%</progress>
+                <small class="text-muted">243GB/256GB</small>
+
+                <div class="text-uppercase mb-q mt-h">
+                    <small><b>SSD 2 Usage</b>
+                    </small>
+                </div>
+                <progress class="progress progress-xs progress-success m-0" value="10" max="100">10%</progress>
+                <small class="text-muted">25GB/256GB</small>
+            </div>
+        </tab>
+    </tabset>
+</aside>
+
 <footer class="footer">
     <span class="text-left">
-        <a href="http://coreui.io">CoreUI</a> &copy; 2016 creativeLabs.
+        <a href="http://lumitel.com">Lumitel</a> &copy; {{date | date: 'yyyy'}} 8point3 Limited.
     </span>
     <span class="float-xs-right">
         Powered by <a href="http://coreui.io">CoreUI</a>

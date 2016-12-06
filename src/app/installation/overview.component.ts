@@ -21,7 +21,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
             console.log(this.id);
             // In a real app: dispatch action to load the details here.
         });
-
     }
 
     ngOnDestroy() {

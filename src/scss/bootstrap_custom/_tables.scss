@@ -18,3 +18,11 @@
         border: 0;
     }
 }
+
+.table-click {
+    tbody {
+        td {
+            cursor: pointer;
+        }
+    }
+}

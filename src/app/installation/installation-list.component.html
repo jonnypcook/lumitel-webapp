@@ -1,0 +1,25 @@
+<table class="table table-bordered table-condensed table-hover table-click">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Details</th>
+        <th>Date registered</th>
+        <th>Type</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let installation of installations | async">
+        <td>{{ installation.name }}</td>
+        <td>{{ installation.description }}</td>
+        <td>2016/10/25</td>
+        <td>Mixed</td>
+        <td>
+            <span class="tag tag-success">Active</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<nav *ngIf="currentPage > 0">
+    <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" [itemsPerPage]="itemsPerPage"></pagination>
+</nav>
