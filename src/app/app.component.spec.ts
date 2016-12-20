@@ -1,37 +1,34 @@
 /* tslint:disable:no-unused-variable */
+
+import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
-import { TestBed } from '@angular/core/testing';
-
-import { By }             from '@angular/platform-browser';
-
-////////  SPECS  /////////////
-
-/// Delete this
-describe('Smoke test', () => {
-  it('should run a passing test', () => {
-    expect(true).toEqual(true, 'should pass');
-  });
-});
-
-describe('AppComponent with TCB', function () {
+describe('AppComponent', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [AppComponent]});
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent
+      ],
+    });
+    TestBed.compileComponents();
   });
 
-  it('should instantiate component', () => {
+  it('should create the app', async(() => {
     let fixture = TestBed.createComponent(AppComponent);
-    expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
-  });
+    let app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
 
-  it('should have expected <h1> text', () => {
+  it(`should have as title 'app works!'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('app works!');
+  }));
+
+  it('should render title in a h1 tag', async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-
-    let h1 = fixture.debugElement.query(el => el.name === 'h1').nativeElement;  // it works
-
-        h1 = fixture.debugElement.query(By.css('h1')).nativeElement;            // preferred
-
-    expect(h1.innerText).toMatch(/angular 2 app/i, '<h1> should say something about "Angular 2 App"');
-  });
+    let compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+  }));
 });

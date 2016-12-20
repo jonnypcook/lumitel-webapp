@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {ItemsService} from '../common/services/items.service.ts';
-import {InstallationsService} from '../common/services/installations.service.ts';
+import {ItemsService} from '../common/services/items.service';
+import {InstallationsService} from '../common/services/installations.service';
 import {Observable} from "rxjs/Observable";
 import {Store} from '@ngrx/store';
 import {Item} from '../common/models/item.model';

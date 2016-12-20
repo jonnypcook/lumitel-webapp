@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 
 @Component({
-    templateUrl: 'area-overview.component.html'
+    templateUrl: './area-overview.component.html'
 })
 export class AreaOverviewComponent implements OnInit, OnDestroy {
 

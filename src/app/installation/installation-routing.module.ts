@@ -25,7 +25,7 @@ const routes: Routes = [
             },
             {
                 path: 'area',
-                loadChildren: 'app/area/area.module#AreaModule'
+                loadChildren: '../area/area.module#AreaModule'
             }
         ]
     }

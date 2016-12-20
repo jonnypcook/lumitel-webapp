@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import {Observable} from "rxjs/Observable";
-import {InstallationsService} from '../common/services/installations.service.ts';
+import {InstallationsService} from '../common/services/installations.service';
 import {Store} from '@ngrx/store';
 import {Installation} from '../common/models/installation.model';
 import {AppStore} from '../common/models/appstore.model';
 
 @Component({
     selector: 'installation-list',
-    templateUrl: 'installation-list.component.html',
+    templateUrl: './installation-list.component.html',
     providers: [InstallationsService]
 })
 export class InstallationListComponent implements OnInit, OnDestroy {

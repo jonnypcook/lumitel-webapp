@@ -2,6 +2,7 @@ import { NgModule }                     from '@angular/core';
 import { BrowserModule }                from '@angular/platform-browser';
 import { LocationStrategy,
          HashLocationStrategy }         from '@angular/common';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { AppComponent }                 from './app.component';
 import { Ng2BootstrapModule }           from 'ng2-bootstrap/ng2-bootstrap';
@@ -22,9 +23,11 @@ import { FullLayoutComponent }          from './layouts/full-layout.component';
 import { SimpleLayoutComponent }          from './layouts/simple-layout.component';
 
 //Authentication Guard
-import { AuthService }          from './shared/auth.service';
-import { CanActivateAuthGuard }          from './shared/can-activate-auth-guard';
+import { AuthenticationService } from './common/services/authentication.service';
+import { CanActivateAuthGuard }          from './guards/can-activate-auth-guard';
 
+// global notifications (growl style)
+import { ToastrModule } from 'toastr-ng2';
 
 //Store
 import {StoreModule} from '@ngrx/store';
@@ -33,18 +36,16 @@ import {items} from './common/stores/items.store';
 import {installations} from './common/stores/installations.store';
 import {selectedItem} from './common/stores/selectedItem.store';
 
-//Redux
-//import { NgReduxModule, NgRedux } from 'ng2-redux';
-//const createLogger = require('redux-logger');
 
 @NgModule({
     imports: [
         BrowserModule,
+        FormsModule,
         AppRoutingModule,
         Ng2BootstrapModule,
-        //NgReduxModule.forRoot(),
         ChartsModule,
         HttpModule,
+        ToastrModule.forRoot(),
         StoreModule.provideStore({items, installations, selectedItem})
     ],
     declarations: [
@@ -60,12 +61,8 @@ import {selectedItem} from './common/stores/selectedItem.store';
         provide: LocationStrategy,
         useClass: HashLocationStrategy
     },
-    AuthService,
+    AuthenticationService,
     CanActivateAuthGuard],
     bootstrap: [ AppComponent ]
 })
-export class AppModule {
-    //constructor(ngRedux: NgRedux<IAppState>) {
-    //    ngRedux.configureStore(rootReducer, {}, [ createLogger() ]);
-    //}
-}
+export class AppModule { }

@@ -10,16 +10,16 @@
                             <div class="input-group mb-1">
                                 <span class="input-group-addon"><i class="icon-user"></i>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" class="form-control" placeholder="Username" [(ngModel)]="details.username">
                             </div>
                             <div class="input-group mb-2">
                                 <span class="input-group-addon"><i class="icon-lock"></i>
                                 </span>
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" class="form-control" placeholder="Password" [(ngModel)]="details.password">
                             </div>
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <button type="button" class="btn btn-primary px-2">Login</button>
+                                    <button type="button" class="btn btn-primary px-2" (click)="login()">Login</button>
                                 </div>
                                 <div class="col-xs-6 text-xs-right">
                                     <button type="button" class="btn btn-link px-0">Forgot password?</button>
@@ -31,7 +31,8 @@
                         <div class="card-block text-xs-center">
                             <div>
                                 <h2>Sign up</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>If you wish to signup for a Lumitel account then please follow the link below to start the
+                                    authorisation process.</p>
                                 <button type="button" class="btn btn-primary active mt-1">Register Now!</button>
                             </div>
                         </div>

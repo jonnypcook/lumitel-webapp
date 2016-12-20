@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 
 @Component({
-    templateUrl: 'overview.component.html'
+    templateUrl: './overview.component.html'
 })
 export class OverviewComponent implements OnInit, OnDestroy {
 
