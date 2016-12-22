@@ -36,7 +36,6 @@ import {items} from './common/stores/items.store';
 import {installations} from './common/stores/installations.store';
 import {selectedItem} from './common/stores/selectedItem.store';
 
-
 @NgModule({
     imports: [
         BrowserModule,

@@ -4,8 +4,13 @@ import {Store} from '@ngrx/store';
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 
-import {AppStore} from '../models/appstore.model';
-import {Installation} from '../models/installation.model';
+import { ApiService } from './api.service';
+import { AppStore } from '../models/appstore.model';
+import { AuthenticationService } from './authentication.service';
+import { environment } from '../../../environments/environment';
+
+import { Installation } from '../models/installation.model';
+import { User } from '../models/user.model';
 
 const BASE_URL = 'http://localhost:3000/installations/';
 const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
@@ -14,14 +19,25 @@ const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 export class InstallationsService {
     installations: Observable<Array<Installation>>;
 
-    constructor(private http: Http, private store: Store<AppStore>) {
+    constructor(private http: Http, private store: Store<AppStore>, private authenticationService: AuthenticationService) {
         this.installations = store.select('installations');
     }
 
+    getHeaders() {
+        let user:User = this.authenticationService.getLogged();
+        let headers = new Headers();
+        headers.append('Authorization', 'Bearer ' + user.token.access_token);
+        headers.append('Accept', 'application/json');
+
+        return headers;
+    }
+
     loadInstallations() {
-        this.http.get(BASE_URL)
+        //console.log('loading ...');
+        //console.log(this.authenticationService.getLogged());
+        this.http.get(environment.api + 'installation', {headers: this.getHeaders()})
             .map(res => res.json())
-            .map(payload => ({ type: 'ADD_INSTALLATIONS', payload }))
+            .map(payload => ({ type: 'ADD_INSTALLATIONS', payload: payload.data, pagination: payload.pagination }))
             .subscribe(action => this.store.dispatch(action));
     }
 
@@ -33,7 +49,7 @@ export class InstallationsService {
     }
 
     saveInstallation(installation: Installation) {
-        (installation.id) ? this.updateInstallation(installation) : this.createInstallation(installation);
+        (installation.installationId) ? this.updateInstallation(installation) : this.createInstallation(installation);
     }
 
     createInstallation(installation: Installation) {
@@ -44,12 +60,12 @@ export class InstallationsService {
     }
 
     updateInstallation(installation: Installation) {
-        this.http.put(`${BASE_URL}${installation.id}`, JSON.stringify(installation), HEADER)
+        this.http.put(`${BASE_URL}${installation.installationId}`, JSON.stringify(installation), HEADER)
             .subscribe(action => this.store.dispatch({ type: 'UPDATE_INSTALLATION', payload: installation }));
     }
 
     deleteInstallation(installation: Installation) {
-        this.http.delete(`${BASE_URL}${installation.id}`)
+        this.http.delete(`${BASE_URL}${installation.installationId}`)
             .subscribe(action => this.store.dispatch({ type: 'DELETE_INSTALLATION', payload: installation }));
     }
 }

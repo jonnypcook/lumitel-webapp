@@ -3,8 +3,16 @@ import { Routes,
     RouterModule }             from '@angular/router';
 
 import { OverviewComponent }            from './overview.component';
+import { InstallationsComponent }            from './installations.component';
 
 const routes: Routes = [
+    {
+        path: '',
+        data: {
+            title: 'Installations'
+        },
+        component: InstallationsComponent
+    },
     {
         path: ':iid',
         data: {

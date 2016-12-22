@@ -7,6 +7,7 @@ import { LoginComponent }           from './login.component';
 import { RegisterComponent }        from './register.component';
 
 import { PagesRoutingModule }       from './pages-routing.module';
+import { WaveComponent } from 'ng-spin-kit/app/spinner/wave';
 
 @NgModule({
     imports: [ PagesRoutingModule, FormsModule ],
@@ -14,7 +15,8 @@ import { PagesRoutingModule }       from './pages-routing.module';
         p404Component,
         p500Component,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        WaveComponent
     ]
 })
 export class PagesModule { }

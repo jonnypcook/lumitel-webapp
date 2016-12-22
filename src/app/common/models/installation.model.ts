@@ -1,5 +1,5 @@
 export interface Installation {
-    id: number;
+    installationId: number;
     name: string;
-    description: string;
+    commissioned: string;
 };

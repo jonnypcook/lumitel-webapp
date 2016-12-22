@@ -13,14 +13,14 @@ export class DashboardComponent {
     public brandWarning:string =  '#f8cb00';
     public brandDanger:string =   '#f86c6b';
 
-
+    public nameStr:string = 'this is a sentence';
     // events
     public chartClicked(e:any):void {
-        console.log(e);
+        //console.log(e);
     }
 
     public chartHovered(e:any):void {
-        console.log(e);
+        //console.log(e);
     }
 
     // lineChart1

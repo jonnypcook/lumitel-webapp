@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
         password: ''
     };
     currentProfileName = 'test';
-    username:string;
-    password:string;
 
     loading = false;
     returnUrl:string;
@@ -58,5 +56,22 @@ export class LoginComponent implements OnInit {
                 this.loading = false;
             }
         );
+    }
+
+    /**
+     * enter key pressed in username or password
+     */
+    enterPressed() {
+        if (this.loginReady()) {
+            this.login();
+        }
+    }
+
+    /**
+     * check for login button readiness
+     * @returns {boolean}
+     */
+    loginReady() {
+        return this.details.username.length && this.details.password.length;
     }
 }

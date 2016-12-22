@@ -13,13 +13,13 @@ export class FullLayoutComponent implements OnInit {
     constructor() {}
 
     public toggled(open:boolean):void {
-        console.log('Dropdown is now: ', open);
+        //console.log('Dropdown is now: ', open);
     }
 
     public toggleDropdown($event:MouseEvent):void {
         $event.preventDefault();
         $event.stopPropagation();
-        console.log('up');
+        //console.log('up');
         this.status.isopen = !this.status.isopen;
     }
 

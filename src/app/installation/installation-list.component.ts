@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import {Observable} from "rxjs/Observable";
 import {InstallationsService} from '../common/services/installations.service';
@@ -15,21 +15,42 @@ export class InstallationListComponent implements OnInit, OnDestroy {
     installations: Observable<Array<Installation>>;
     public totalItems:number = 0;
     public currentPage:number = 1;
-    public itemsPerPage:number = 2;
+    @Input() public itemsPerPage:number = 2;
 
-    constructor(private installationsService: InstallationsService) {
-    }
+    constructor(private installationsService: InstallationsService) {}
 
     ngOnInit() {
         this.installations = this.installationsService.installations;
         this.installations.subscribe(action => this.prepInstallationsTableData(action));
-        this.installationsService.loadInstallations();
+        if (this.totalItems === 0) {
+            this.installationsService.loadInstallations();
+        }
     }
 
-    ngOnDestroy() {
+    ngOnDestroy() {}
+
+    /**
+     * check to see if installations are loading
+     * @returns {boolean}
+     */
+    public loading() {
+        return !this.totalItems;
     }
 
+    /**
+     * prepare installations table data on notification
+     * @param action
+     */
     public prepInstallationsTableData(action:any):void {
         this.totalItems = action.length;
     }
+
+    /**
+     * select installation
+     * @param installation
+     */
+    public installationSelected(installation: Installation) {
+        console.log(installation);
+    }
+
 }

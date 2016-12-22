@@ -9,13 +9,18 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let installation of installations | async">
+    <tr *ngFor="let installation of installations | async | pages:currentPage:itemsPerPage" (click)="installationSelected(installation)">
         <td>{{ installation.name }}</td>
-        <td>{{ installation.description }}</td>
-        <td>2016/10/25</td>
+        <td>{{ installation.name }}</td>
+        <td>{{ installation.commissioned }}</td>
         <td>Mixed</td>
         <td>
             <span class="tag tag-success">Active</span>
+        </td>
+    </tr>
+    <tr *ngIf="loading()">
+        <td colspan="5">
+            Please wait loading ...
         </td>
     </tr>
     </tbody>
