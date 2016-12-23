@@ -1,1 +1,72 @@
-<h1>Overview!</h1>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-block">
+                    <div class="h1 text-muted text-xs-right mb-2">
+                        <i class="icon-bulb"></i>
+                    </div>
+                    <div class="h4 mb-0">{{ information.lighting }}</div>
+                    <small class="text-muted text-uppercase font-weight-bold">Lighting</small>
+                    <progress class="progress progress-xs progress-info mt-1 mb-0" value="100" max="100">100%</progress>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-block">
+                    <div class="h1 text-muted text-xs-right mb-2">
+                        <i class="fa fa-flash"></i>
+                    </div>
+                    <div class="h4 mb-0">{{ information.hvac }}</div>
+                    <small class="text-muted text-uppercase font-weight-bold">HVAC</small>
+                    <progress class="progress progress-xs progress-success mt-1 mb-0" value="100" max="100">100%</progress>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-block">
+                    <div class="h1 text-muted text-xs-right mb-2">
+                        <i class="fa fa-tint"></i>
+                    </div>
+                    <div class="h4 mb-0">{{ information.water }}</div>
+                    <small class="text-muted text-uppercase font-weight-bold">Water</small>
+                    <progress class="progress progress-xs progress-primary mt-1 mb-0" value="100" max="100">100%</progress>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-block">
+                    <div class="h1 text-muted text-xs-right mb-2">
+                        <i class="fa fa-plug"></i>
+                    </div>
+                    <div class="h4 mb-0">{{ information.devices }}</div>
+                    <small class="text-muted text-uppercase font-weight-bold">Devices</small>
+                    <progress class="progress progress-xs progress-danger mt-1 mb-0" value="100" max="100">100%</progress>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-block">
+                    <div class="h1 text-muted text-xs-right mb-2">
+                        <i class="icon-fire"></i>
+                    </div>
+                    <div class="h4 mb-0">{{ information.hotWater }}</div>
+                    <small class="text-muted text-uppercase font-weight-bold">Hot Water</small>
+                    <progress class="progress progress-xs progress-warning mt-1 mb-0" value="100" max="100">100%</progress>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!--/.row-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Spaces
+                </div>
+                <div class="card-block">
+                    <space-list [itemsPerPage]="15" *ngIf="installation"></space-list>
+                </div>
+            </div>
+        </div>
+        <!--/col-->
+    </div>
+    <!--/.row-->
+</div>

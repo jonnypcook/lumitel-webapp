@@ -12,7 +12,6 @@ export class AreaOverviewComponent implements OnInit, OnDestroy {
     constructor (
         private route: ActivatedRoute
     ) {
-        console.log('AreaOverviewComponent:');
     }
 
     ngOnInit() {

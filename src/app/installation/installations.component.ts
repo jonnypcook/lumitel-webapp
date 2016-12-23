@@ -8,7 +8,6 @@ export class InstallationsComponent implements OnInit, OnDestroy {
     constructor (
         private route: ActivatedRoute
     ) {
-        console.log('InstallationsComponent:');
     }
 
     ngOnInit() {

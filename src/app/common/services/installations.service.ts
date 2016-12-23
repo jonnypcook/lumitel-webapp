@@ -37,14 +37,14 @@ export class InstallationsService {
         //console.log(this.authenticationService.getLogged());
         this.http.get(environment.api + 'installation', {headers: this.getHeaders()})
             .map(res => res.json())
-            .map(payload => ({ type: 'ADD_INSTALLATIONS', payload: payload.data, pagination: payload.pagination }))
+            .map(payload => ({ type: 'ADD', payload: payload.data }))
             .subscribe(action => this.store.dispatch(action));
     }
 
     loadInstallation(installationId) {
-        this.http.get(`${BASE_URL}${installationId}`)
+        this.http.get(environment.api + 'installation/' + installationId, {headers: this.getHeaders()})
             .map(res => res.json())
-            .map(payload => ({ type: 'ADD_INSTALLATIONS', payload }))
+            .map(payload => ({ type: 'ADD', payload }))
             .subscribe(action => this.store.dispatch(action));
     }
 
@@ -55,17 +55,17 @@ export class InstallationsService {
     createInstallation(installation: Installation) {
         this.http.post(`${BASE_URL}`, JSON.stringify(installation), HEADER)
             .map(res => res.json())
-            .map(payload => ({ type: 'CREATE_INSTALLATION', payload }))
+            .map(payload => ({ type: 'CREATE', payload }))
             .subscribe(action => this.store.dispatch(action));
     }
 
     updateInstallation(installation: Installation) {
         this.http.put(`${BASE_URL}${installation.installationId}`, JSON.stringify(installation), HEADER)
-            .subscribe(action => this.store.dispatch({ type: 'UPDATE_INSTALLATION', payload: installation }));
+            .subscribe(action => this.store.dispatch({ type: 'UPDATE', payload: installation }));
     }
 
     deleteInstallation(installation: Installation) {
         this.http.delete(`${BASE_URL}${installation.installationId}`)
-            .subscribe(action => this.store.dispatch({ type: 'DELETE_INSTALLATION', payload: installation }));
+            .subscribe(action => this.store.dispatch({ type: 'DELETE', payload: installation }));
     }
 }

@@ -31,8 +31,4 @@ const routes:Routes = [
     exports: [RouterModule]
 })
 export class AreaRoutingModule {
-    constructor() {
-        console.log('AreaRoutingModule:');
-    }
-
 }

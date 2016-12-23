@@ -6,9 +6,11 @@ import { InstallationsComponent }            from './installations.component';
 import { InstallationRoutingModule }       from './installation-routing.module';
 
 import { InstallationListModule } from '../installation/installation-list.module';
+import { SpaceListModule } from './space-list.module';
+import { CommonModule }         from '@angular/common';
 
 @NgModule({
-    imports: [ InstallationRoutingModule, InstallationListModule ],
+    imports: [ InstallationRoutingModule, InstallationListModule, SpaceListModule, CommonModule],
     declarations: [
         OverviewComponent,
         InstallationsComponent

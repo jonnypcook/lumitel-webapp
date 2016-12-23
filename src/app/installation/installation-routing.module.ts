@@ -16,7 +16,7 @@ const routes: Routes = [
     {
         path: ':iid',
         data: {
-            title: 'Example Pages'
+            title: 'Installations'
         },
         children: [
             {
@@ -44,8 +44,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 export class InstallationRoutingModule {
-    constructor () {
-        console.log('InstallationRoutingModule:');
-    }
-
 }

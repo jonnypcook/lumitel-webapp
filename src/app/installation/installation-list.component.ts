@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute, Params, Router }   from '@angular/router';
 import {Observable} from "rxjs/Observable";
 import {InstallationsService} from '../common/services/installations.service';
 import {Store} from '@ngrx/store';
@@ -17,7 +17,7 @@ export class InstallationListComponent implements OnInit, OnDestroy {
     public currentPage:number = 1;
     @Input() public itemsPerPage:number = 2;
 
-    constructor(private installationsService: InstallationsService) {}
+    constructor(private installationsService: InstallationsService, private router: Router) {}
 
     ngOnInit() {
         this.installations = this.installationsService.installations;
@@ -51,6 +51,7 @@ export class InstallationListComponent implements OnInit, OnDestroy {
      */
     public installationSelected(installation: Installation) {
         console.log(installation);
+        this.router.navigate(['/installation', installation.installationId]);
     }
 
 }
