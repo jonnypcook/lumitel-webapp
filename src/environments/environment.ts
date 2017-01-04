@@ -7,6 +7,6 @@ export const environment = {
     production: false,
     api: 'http://localhost:8080/api/',
     auth: 'http://localhost:8080/',
-    clientId: '5',
-    clientSecret: 'NsJMD98KzcFW6oJujs3U2aOoilDJA6yN1wA791Cm'
+    clientId: '4',
+    clientSecret: 'mC7x61TGYxg38EH7kNsE4qGf2scRRxcNpDKsQ9Yi'
 };
