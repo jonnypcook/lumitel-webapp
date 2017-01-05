@@ -1,11 +1,36 @@
 import { Component, OnInit }    from '@angular/core';
 import { Router }               from '@angular/router';
+import { AuthorizationService} from '../common/services/authorization.service';
 
 @Component({
     templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
-    constructor() {}
+    constructor(private authorizationService: AuthorizationService) {
+        //console.log('hello');
+        //console.log('installation.create', authorizationService.hasPermission('installation.create'));
+        //console.log('installation.read', authorizationService.hasPermission('installation.read'));
+        //console.log('installation.update', authorizationService.hasPermission('installation.update'));
+        //console.log('installation.delete', authorizationService.hasPermission('installation.delete'));
+        //console.log('installation.fake', authorizationService.hasPermission('installation.fake'));
+        //
+        //console.log('20 (installation.create)', authorizationService.hasPermissionId(20));
+        //console.log('21 (installation.create)', authorizationService.hasPermissionId(21));
+        //console.log('22 (installation.create)', authorizationService.hasPermissionId(22));
+        //console.log('23 (installation.create)', authorizationService.hasPermissionId(23));
+        //console.log('24 (installation.fake)', authorizationService.hasPermissionId(24));
+        //
+        //console.log('administrator', authorizationService.hasRole('administrator'));
+        //console.log('member', authorizationService.hasRole('member'));
+        //console.log('OWNER_READER', authorizationService.hasRole('OWNER_READER'));
+        //console.log('OWNER_UPDATER', authorizationService.hasRole('OWNER_UPDATER'));
+        //console.log('OWNER_FAKE', authorizationService.hasRole('OWNER_FAKE'));
+        //
+        //console.log('110 (OWNER_READER)', authorizationService.hasRoleId(110));
+        //console.log('111 (OWNER_UPDATER)', authorizationService.hasRoleId(111));
+        //console.log('112 (OWNER_FAKE)', authorizationService.hasRoleId(112));
+
+    }
 
     public brandPrimary:string =  '#20a8d8';
     public brandSuccess:string =  '#4dbd74';

@@ -24,7 +24,10 @@ import { SimpleLayoutComponent }          from './layouts/simple-layout.componen
 
 //Authentication Guard
 import { AuthenticationService } from './common/services/authentication.service';
+import { AuthorizationService} from './common/services/authorization.service';
 import { CanActivateAuthGuard }          from './guards/can-activate-auth-guard';
+import { CanActivatePermissionGuard } from './guards/can-activate-permission-guard';
+import { CanActivateRoleGuard } from './guards/can-activate-role-guard';
 
 // global notifications (growl style)
 import { ToastrModule } from 'toastr-ng2';
@@ -61,7 +64,10 @@ import {selectedItem} from './common/stores/selectedItem.store';
         useClass: HashLocationStrategy
     },
     AuthenticationService,
-    CanActivateAuthGuard],
+    AuthorizationService,
+    CanActivateAuthGuard,
+    CanActivatePermissionGuard,
+    CanActivateRoleGuard],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }

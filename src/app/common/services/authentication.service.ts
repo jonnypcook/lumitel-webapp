@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { environment } from '../../../environments/environment';
 import { User } from '../models/user.model';
 import { Token } from '../models/token.model';
@@ -45,6 +45,10 @@ export class AuthenticationService {
      * @returns {any}
      */
     login(username:string, password:string) {
+        // ensure that we are logged out
+        this.logout();
+
+        // create login request
         const body = new URLSearchParams();
         body.set('grant_type', 'password');
         body.set('client_id', environment.clientId);
@@ -64,25 +68,31 @@ export class AuthenticationService {
             .map((response:Response) => {
                 // login successful if there's a jwt token in the response
                 let token:Token = response.json();
-                //if (token && token.access_token) {
-                //    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                //    localStorage.setItem('currentUser', token);
-                //}
+
                 return token;
             })
             .flatMap((token:Token, index) => {
                 let headers = new Headers();
                 headers.append('Authorization', 'Bearer ' + token.access_token);
                 headers.append('Accept', 'application/json');
-                return this.http.get(environment.api + 'user', {headers: headers})
-                    .map((response:Response) => {
+
+                return Observable.forkJoin(
+                    this.http.get(environment.api + 'user', {headers: headers}).map((response:Response) => {
                         let user:User = response.json();
                         user.token = token;
 
                         if (user && user.token && user.token.access_token) {
                             localStorage.setItem('currentUser', JSON.stringify(user));
                         }
+                    }),
+                    this.http.get(environment.api + 'user/permission', {headers: headers}).map((response:Response) => {
+                        let authorization = response.json();
+
+                        if (authorization && authorization.permissions && authorization.roles) {
+                            localStorage.setItem('authorization', JSON.stringify(authorization));
+                        }
                     })
+                );
             });
     }
 
@@ -92,5 +102,6 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('authorization');
     }
 }

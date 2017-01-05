@@ -3,6 +3,8 @@ import { Routes,
          RouterModule }         from '@angular/router';
 
 import { DashboardComponent }   from './dashboard.component';
+import { CanActivatePermissionGuard } from '../guards/can-activate-permission-guard';
+import { CanActivateRoleGuard } from '../guards/can-activate-role-guard';
 
 const routes: Routes = [
     {

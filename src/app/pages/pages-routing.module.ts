@@ -2,6 +2,7 @@ import { NgModule }                 from '@angular/core';
 import { Routes,
          RouterModule }             from '@angular/router';
 
+import { p403Component }            from './403.component';
 import { p404Component }            from './404.component';
 import { p500Component }            from './500.component';
 import { LoginComponent }           from './login.component';
@@ -14,6 +15,13 @@ const routes: Routes = [
             title: 'Example Pages'
         },
         children: [
+            {
+                path: '403',
+                component: p403Component,
+                data: {
+                    title: 'Page 403'
+                }
+            },
             {
                 path: '404',
                 component: p404Component,
