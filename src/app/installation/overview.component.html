@@ -1,58 +1,65 @@
 <div class="animated fadeIn">
-    <div class="row">
-        <div class="card-group">
-            <div class="card">
-                <div class="card-block">
-                    <div class="h1 text-muted text-xs-right mb-2">
-                        <i class="icon-bulb"></i>
-                    </div>
-                    <div class="h4 mb-0">{{ information.lighting }}</div>
-                    <small class="text-muted text-uppercase font-weight-bold">Lighting</small>
-                    <progress class="progress progress-xs progress-info mt-1 mb-0" value="100" max="100">100%</progress>
+    <div class="card-group">
+        <div class="card">
+            <div class="card-block">
+                <div class="h1 text-muted text-right mb-2">
+                    <i class="icon-bulb"></i>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-block">
-                    <div class="h1 text-muted text-xs-right mb-2">
-                        <i class="fa fa-flash"></i>
-                    </div>
-                    <div class="h4 mb-0">{{ information.hvac }}</div>
-                    <small class="text-muted text-uppercase font-weight-bold">HVAC</small>
-                    <progress class="progress progress-xs progress-success mt-1 mb-0" value="100" max="100">100%</progress>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-block">
-                    <div class="h1 text-muted text-xs-right mb-2">
-                        <i class="fa fa-tint"></i>
-                    </div>
-                    <div class="h4 mb-0">{{ information.water }}</div>
-                    <small class="text-muted text-uppercase font-weight-bold">Water</small>
-                    <progress class="progress progress-xs progress-primary mt-1 mb-0" value="100" max="100">100%</progress>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-block">
-                    <div class="h1 text-muted text-xs-right mb-2">
-                        <i class="fa fa-plug"></i>
-                    </div>
-                    <div class="h4 mb-0">{{ information.devices }}</div>
-                    <small class="text-muted text-uppercase font-weight-bold">Devices</small>
-                    <progress class="progress progress-xs progress-danger mt-1 mb-0" value="100" max="100">100%</progress>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-block">
-                    <div class="h1 text-muted text-xs-right mb-2">
-                        <i class="icon-fire"></i>
-                    </div>
-                    <div class="h4 mb-0">{{ information.hotWater }}</div>
-                    <small class="text-muted text-uppercase font-weight-bold">Hot Water</small>
-                    <progress class="progress progress-xs progress-warning mt-1 mb-0" value="100" max="100">100%</progress>
+                <div class="h4 mb-0">{{ information.lighting }}</div>
+                <small class="text-muted text-uppercase font-weight-bold">Lighting</small>
+                <div class="progress progress-xs mt-1 mb-0">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
-        <!--/.col-->
+        <div class="card">
+            <div class="card-block">
+                <div class="h1 text-muted text-right mb-2">
+                    <i class="fa fa-flash"></i>
+                </div>
+                <div class="h4 mb-0">{{ information.hvac }}</div>
+                <small class="text-muted text-uppercase font-weight-bold">HVAC</small>
+                <div class="progress progress-xs mt-1 mb-0">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-block">
+                <div class="h1 text-muted text-right mb-2">
+                    <i class="fa fa-tint"></i>
+                </div>
+                <div class="h4 mb-0">{{ information.water }}</div>
+                <small class="text-muted text-uppercase font-weight-bold">Water</small>
+                <div class="progress progress-xs mt-1 mb-0">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-block">
+                <div class="h1 text-muted text-right mb-2">
+                    <i class="fa fa-plug"></i>
+                </div>
+                <div class="h4 mb-0">{{ information.devices }}</div>
+                <small class="text-muted text-uppercase font-weight-bold">Devices</small>
+                <div class="progress progress-xs mt-1 mb-0">
+                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-block">
+                <div class="h1 text-muted text-right mb-2">
+                    <i class="icon-fire"></i>
+                </div>
+                <div class="h4 mb-0">{{ information.hotWater }}</div>
+                <small class="text-muted text-uppercase font-weight-bold">Hot Water</small>
+                <div class="progress progress-xs mt-1 mb-0">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <!--/.row-->
     <div class="row">
@@ -62,11 +69,10 @@
                     <i class="fa fa-align-justify"></i> Spaces
                 </div>
                 <div class="card-block">
-                    <space-list [itemsPerPage]="15" *ngIf="installation"></space-list>
+                    <!--<space-list [itemsPerPage]="15" *ngIf="installation"></space-list>-->
                 </div>
             </div>
         </div>
-        <!--/col-->
     </div>
     <!--/.row-->
 </div>

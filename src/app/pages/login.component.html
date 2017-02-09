@@ -1,8 +1,8 @@
-<div class="container d-table">
-    <div class="d-100vh-va-middle">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card-group">
+<div class="app flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-group mb-0">
                     <div class="card p-2">
                         <div class="card-block">
                             <h1>Login</h1>
@@ -18,18 +18,18 @@
                                 <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="details.password" (keyup.enter)="enterPressed()">
                             </div>
                             <div class="row">
-                                <div class="col-xs-6">
+                                <div class="col-6">
                                     <button [disabled]="!loginReady()" [hidden]="loading" type="button" class="btn btn-primary px-2" (click)="login()">Login</button>
                                     <sk-wave class="no-margin abs" [isRunning]="loading"></sk-wave>
                                 </div>
-                                <div class="col-xs-6 text-xs-right">
+                                <div class="col-6 text-right">
                                     <button type="button" class="btn btn-link px-0">Forgot password?</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card card-inverse card-primary py-3 hidden-md-down" style="width:44%">
-                        <div class="card-block text-xs-center">
+                        <div class="card-block text-center">
                             <div>
                                 <h2>Sign up</h2>
                                 <p>If you wish to signup for a Lumitel account then please follow the link below to start the

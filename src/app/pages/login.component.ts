@@ -16,10 +16,9 @@ export class LoginDetails {
 })
 export class LoginComponent implements OnInit {
     details:LoginDetails = {
-        username: '',
-        password: ''
+        username: 'jonny.p.cook@gmail.com',
+        password: 'secret'
     };
-    currentProfileName = 'test';
 
     loading = false;
     returnUrl:string;

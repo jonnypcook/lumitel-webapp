@@ -1,28 +1,28 @@
 .table-outline {
-    border: 1px solid $table-border-color;
+  border: 1px solid $table-border-color;
 
-    td {
-        vertical-align: middle;
-    }
+  td {
+    vertical-align: middle;
+  }
 }
 
 .table-align-middle {
 
-    td {
-        vertical-align: middle;
-    }
+  td {
+    vertical-align: middle;
+  }
 }
 
 .table-clear {
-    td {
-        border: 0;
-    }
+  td {
+    border: 0;
+  }
 }
 
 .table-click {
-    tbody {
-        td {
-            cursor: pointer;
-        }
+  tbody {
+    td {
+      cursor: pointer;
     }
+  }
 }

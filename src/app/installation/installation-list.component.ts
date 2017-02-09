@@ -13,8 +13,10 @@ import {AppStore} from '../common/models/appstore.model';
 })
 export class InstallationListComponent implements OnInit, OnDestroy {
     installations: Observable<Array<Installation>>;
+
     public totalItems:number = 0;
     public currentPage:number = 1;
+
     @Input() public itemsPerPage:number = 2;
 
     constructor(private installationsService: InstallationsService, private router: Router) {}

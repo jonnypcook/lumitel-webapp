@@ -8,7 +8,7 @@ import { LoginComponent }           from './login.component';
 import { RegisterComponent }        from './register.component';
 
 import { PagesRoutingModule }       from './pages-routing.module';
-import { WaveComponent } from 'ng-spin-kit/app/spinner/wave';
+import { WaveComponent } from 'ng-spin-kit/app/spinner/wave.component';
 
 @NgModule({
     imports: [ PagesRoutingModule, FormsModule ],
