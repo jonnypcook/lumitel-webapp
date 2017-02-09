@@ -1,15 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
-import {InstallationsService} from '../common/services/installations.service';
+import {Observable} from "rxjs/Observable";
+import {InstallationService} from '../common/services/installation.service';
 import {Installation} from '../common/models/installation.model';
 
 
 @Component({
     templateUrl: './overview.component.html',
-    providers: [InstallationsService]
+    providers: [InstallationService]
 })
 export class OverviewComponent implements OnInit, OnDestroy {
-    installation: Installation;
+    installation: Observable<Installation>;
     private sub: any;
 
     information:any = {
@@ -21,14 +22,15 @@ export class OverviewComponent implements OnInit, OnDestroy {
     };
 
     constructor (
-        private installationsService: InstallationsService,
+        private installationService: InstallationService,
         private route: ActivatedRoute
     ) {
     }
 
     ngOnInit() {
+        this.installation = this.installationService.installation;
         this.sub = this.route.params.subscribe(params => {
-            this.installationsService.loadInstallation(+params['iid']);
+            this.installationService.loadInstallation(+params['iid']);
             // In a real app: dispatch action to load the details here.
         });
     }
