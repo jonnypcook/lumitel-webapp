@@ -11,13 +11,14 @@ import { environment } from '../../../environments/environment';
 import { Installation } from '../models/installation.model';
 import { User } from '../models/user.model';
 
+import {SELECT_INSTALLATION, CLEAR_SPACE} from "../stores/actions";
 
 @Injectable()
 export class InstallationService {
     installation: Observable<Installation>;
 
     constructor(private http: Http, private store: Store<AppStore>, private authenticationService: AuthenticationService) {
-        this.installation = store.select('installation');
+        this.installation = this.store.select('installation');
     }
 
     getHeaders() {
@@ -30,9 +31,10 @@ export class InstallationService {
     }
 
     loadInstallation(installationId) {
+        this.store.dispatch({type: CLEAR_SPACE});
         this.http.get(environment.api + 'installation/' + installationId, {headers: this.getHeaders()})
             .map(res => res.json())
-            .map(payload => ({ type: 'SELECT_ITEM', payload }))
+            .map(payload => ({ type: SELECT_INSTALLATION, payload: payload.data }))
             .subscribe(action => this.store.dispatch(action));
     }
 }

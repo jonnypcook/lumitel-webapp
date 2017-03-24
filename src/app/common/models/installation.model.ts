@@ -1,5 +1,12 @@
+import {Device} from "./device.model";
+import {Address} from "./address.model";
+import {DeviceTypeSummary} from "./device.type.summary.model";
+
 export interface Installation {
-    installationId: number;
-    name: string;
     commissioned: string;
+    installation_id: number;
+    name: string;
+    address: Address,
+    summary: Array<DeviceTypeSummary>,
+    monitors: Array<Device>
 };

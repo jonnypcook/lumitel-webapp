@@ -4,7 +4,7 @@ import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { InstallationListModule } from '../installation/installation-list.module';
+import { InstallationListModule } from '../installation-list/installation-list.module';
 
 @NgModule({
     imports: [

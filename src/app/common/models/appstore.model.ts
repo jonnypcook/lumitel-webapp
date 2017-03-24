@@ -7,5 +7,6 @@ export interface AppStore {
     installations: Installation[];
     installation: Installation;
     spaces: Space[];
+    space: Space;
     selectedItem: Item;
 };

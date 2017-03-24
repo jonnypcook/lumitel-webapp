@@ -2,14 +2,22 @@
     <thead>
     <tr>
         <th>Name</th>
-        <th>Details</th>
+        <th>Level</th>
         <th>Date registered</th>
         <th>Type</th>
         <th>Status</th>
     </tr>
     </thead>
     <tbody>
-
+    <tr *ngFor="let space of spaces | async | pages:currentPage:itemsPerPage" (click)="spaceSelected(space)">
+        <td>{{ space.name }}</td>
+        <td>{{ space.level_label }}</td>
+        <td>-</td>
+        <td>Mixed</td>
+        <td>
+            <span class="tag tag-success">Active</span>
+        </td>
+    </tr>
     <tr *ngIf="loading()">
         <td colspan="5">
             Please wait loading ...

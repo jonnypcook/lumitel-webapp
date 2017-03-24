@@ -52,8 +52,11 @@ export class InstallationListComponent implements OnInit, OnDestroy {
      * @param installation
      */
     public installationSelected(installation: Installation) {
-        console.log(installation);
-        this.router.navigate(['/installation', installation.installationId]);
+        if (!installation.installation_id) {
+            return;
+        }
+
+        this.router.navigate(['/installation', installation.installation_id]);
     }
 
 }

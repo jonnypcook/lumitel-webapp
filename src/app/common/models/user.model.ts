@@ -1,4 +1,4 @@
-import { Token } from '../models/token.model';
+import {Token} from "./token.model";
 
 export interface User {
     id: number;

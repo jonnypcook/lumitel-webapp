@@ -12,6 +12,7 @@ import {ChartsModule} from 'ng2-charts/ng2-charts';
 import {SIDEBAR_TOGGLE_DIRECTIVES} from './shared/sidebar.directive';
 import {AsideToggleDirective} from './shared/aside.directive';
 import {BreadcrumbsComponent} from './shared/breadcrumb.component';
+import {SummaryComponent} from './shared/summary.component';
 
 // http module
 import {HttpModule} from '@angular/http';
@@ -36,7 +37,9 @@ import {ToastrModule} from 'toastr-ng2';
 //Store
 import {StoreModule} from '@ngrx/store';
 import {items} from './common/stores/items.store';
+import {installation} from './common/stores/installation.store';
 import {installations} from './common/stores/installations.store';
+import {spaces} from './common/stores/spaces.store';
 import {selectedItem} from './common/stores/selectedItem.store';
 
 
@@ -50,9 +53,9 @@ import {selectedItem} from './common/stores/selectedItem.store';
         ChartsModule,
         HttpModule,
         ToastrModule.forRoot(),
-        StoreModule.provideStore({items, installations, selectedItem})
+        StoreModule.provideStore({items, installations, selectedItem, installation, spaces})
     ],
-    declarations: [
+    declarations:    [
         AppComponent,
         FullLayoutComponent,
         SimpleLayoutComponent,
@@ -60,6 +63,7 @@ import {selectedItem} from './common/stores/selectedItem.store';
         BreadcrumbsComponent,
         SIDEBAR_TOGGLE_DIRECTIVES,
         AsideToggleDirective,
+        SummaryComponent
     ],
     providers: [{
         provide: LocationStrategy,

@@ -1,16 +1,17 @@
+import {ADD_INSTALLATION, CREATE_INSTALLATION, UPDATE_INSTALLATION, DELETE_INSTALLATION} from "./actions";
 export const installations = (state: any = [], {type, payload}) => {
     switch (type) {
-        case 'ADD':
+        case ADD_INSTALLATION:
             return payload;
-        case 'CREATE':
+        case CREATE_INSTALLATION:
             return [...state, payload];
-        case 'UPDATE':
+        case UPDATE_INSTALLATION:
             return state.map(installation => {
-                return installation.installationId === payload.installationId ? Object.assign({}, installation, payload) : installation;
+                return installation.installation_id === payload.installation_id ? Object.assign({}, installation, payload) : installation;
             });
-        case 'DELETE':
+        case DELETE_INSTALLATION:
             return state.filter(installation => {
-                return installation.installationId !== payload.installationId;
+                return installation.installation_id !== payload.installation_id;
             });
         default:
             return state;
