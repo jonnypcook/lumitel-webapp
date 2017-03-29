@@ -14,11 +14,8 @@ import {UPDATE_INSTALLATION} from "../stores/actions";
 
 @Injectable()
 export class DevicesService {
-    installation: Observable<Installation>;
-
     constructor(private http: Http, private store: Store<AppStore>, private authenticationService: AuthenticationService) {
         // console.log('selecting "devices" store');
-        this.installation = this.store.select('installation');
     }
 
     getHeaders() {
@@ -80,7 +77,17 @@ export class DevicesService {
     loadInstallationMonitorAndSummary(installationId: number) {
         return Observable.forkJoin(
             this.loadDeviceSummary(installationId).map(payload => ({summary: payload})),
-            this.loadDevices(installationId, true).map(payload => ({monitors: payload.data}))
+            this.loadDevices(installationId, true)
+                .map(payload => ({monitors: payload.data}))
+                .map(payload => {
+                    for(let i in payload.monitors) {
+                        if (!!payload.monitors[i].last_reading_at) {
+                            payload.monitors[i].last_reading_at = new Date(payload.monitors[i].last_reading_at);
+                        }
+                    }
+
+                    return payload;
+                })
         ).subscribe(payload => {
             let action = {
                 type: UPDATE_INSTALLATION, payload: {
@@ -88,7 +95,7 @@ export class DevicesService {
                     monitors: payload[1].monitors
                 }
             };
-            this.store.dispatch(action)
+            this.store.dispatch(action);
         });
     }
 

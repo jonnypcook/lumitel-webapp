@@ -69,6 +69,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
                 </li>
+                <menu-installation *ngIf="!!installationId" [activeInstallationId]="installationId" [installation]="installation | async"></menu-installation>
 
                 <li class="divider"></li>
                 <li class="nav-title">
@@ -125,7 +126,7 @@
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <breadcrumbs></breadcrumbs>
+            <breadcrumbs [activeInstallationId]="installationId" [installation]="installation | async"></breadcrumbs>
             <summary></summary>
         </ol>
 

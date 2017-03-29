@@ -12,8 +12,8 @@
     <tr *ngFor="let space of spaces | async | pages:currentPage:itemsPerPage" (click)="spaceSelected(space)">
         <td>{{ space.name }}</td>
         <td>{{ space.level_label }}</td>
-        <td>-</td>
-        <td>Mixed</td>
+        <td>{{ space.created | date:'fullDate'}}</td>
+        <td>Floor <small><a href="javascript:">View Floor Plan</a></small></td>
         <td>
             <span class="tag tag-success">Active</span>
         </td>

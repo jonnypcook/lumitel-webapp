@@ -69,6 +69,30 @@ export class DeviceService {
     }
 
     /**
+     * load device data from API
+     * @param deviceId
+     * @param deviceDataType
+     * @param dateFrom
+     * @param dateTo
+     * @param resultsPerPage
+     * @param page
+     * @returns {Observable<R>}
+     */
+    loadLatestDeviceData(deviceId: number, deviceDataType: DeviceDataType) {
+        let params: URLSearchParams = new URLSearchParams();
+        let type: string = DeviceDataType[deviceDataType];
+
+        return this.http.get(environment.api + 'device/' + deviceId + '/data/' + type + '/latest', {
+            search: params,
+            headers: this.getHeaders()
+        })
+            .map(res => {
+                return res.json()
+            })
+            ;
+    }
+
+    /**
      * format date string to UTC format
      * @param date
      * @returns {string}

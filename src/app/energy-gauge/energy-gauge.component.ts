@@ -3,6 +3,11 @@ import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {GaugeSegment, GaugeLabel} from 'ng2-kw-gauge';
 import {DeviceService, DeviceDataType} from '../common/services/device.service';
 import {Observable} from "rxjs/Observable";
+import {Device} from "../common/models/device.model";
+import {Store} from "@ngrx/store";
+import {AppStore} from "../common/models/appstore.model";
+import {UPDATE_INSTALLATION_MONITOR} from "../common/stores/actions";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -13,13 +18,11 @@ import {Observable} from "rxjs/Observable";
 })
 export class EnergyGaugeComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
-        if (!!this.sub) {
-            this.sub.unsubscribe();
-        }
+        this.sub.unsubscribe();
     }
 
     @Input() public themeName:string;
-    @Input() public deviceId:number;
+    @Input() public device:Device;
     @Input() public refresh:number;
     @Input() public target:number;
     @Input() public water:boolean=false;
@@ -54,7 +57,9 @@ export class EnergyGaugeComponent implements OnInit, OnDestroy {
     public progressGraph;
     private energy: GaugeSegment;
     private labelDay: GaugeLabel;
-    private labelCurrent: GaugeLabel;
+    private labelCurrent: GaugeLabel
+
+    private deviceDataSubscription: Subscription;
 
     /**
      *
@@ -75,33 +80,56 @@ export class EnergyGaugeComponent implements OnInit, OnDestroy {
         }
     }
 
-    constructor(private deviceService:DeviceService) {
+    constructor(private deviceService:DeviceService, private store: Store<AppStore>) {
     }
 
     /**
      * refresh the gauge status
      */
     public refreshGauge() {
-        if (!this.deviceId) {
+
+        if (!this.device) {
             return;
         }
 
-        let now: Date = new Date();
-        let dateFrom: Date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0));
-        let dateTo: Date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 23, 59, 59));
-
-        // this.deviceService.loadDeviceData(this.deviceId, DeviceDataType.energy, dateFrom, dateTo, 1, 1)
+        // this.deviceService.loadLatestDeviceData(this.device.device_id, DeviceDataType.energy)
         //     .subscribe(deviceData => {
-        //         if (!deviceData.paginator.totalRecords || deviceData.paginator.totalRecords <= 0) {
+        //         if (!deviceData) {
         //             return;
         //         }
         //
         //         if (this.water) {
-        //             this.configureFlowGauge(deviceData.rows[0].total_day_use);
+        //             this.configureFlowGauge(deviceData.total_day_use);
         //         } else {
-        //             this.configureEnergyGauge(deviceData.rows[0].total_day_use, deviceData.rows[0].current_use);
+        //             this.configureEnergyGauge(deviceData.total_day_use, deviceData.current_use);
         //         }
+        //
+        //         let action = {
+        //             type: UPDATE_INSTALLATION_MONITOR, payload: {
+        //                 device_id: this.device.device_id,
+        //                 data: {
+        //                     last_reading_total: deviceData.total_day_use,
+        //                     last_reading_current: deviceData.current_use,
+        //                     last_reading_at: new Date(deviceData.utc_time),
+        //                 }
+        //             }
+        //         };
+        //         this.store.dispatch(action);
+        //
+        //         // this.updateDevice(deviceData.total_day_use, deviceData.current_use, new Date(deviceData.utc_time))
         //     });
+    }
+
+    /**
+     * update Device object reading data
+     * @param readingTotal
+     * @param readingCurrent
+     * @param readingAt
+     */
+    private updateDevice(readingTotal:number, readingCurrent:number, readingAt: Date) {
+        this.device.last_reading_total = readingTotal;
+        this.device.last_reading_current = readingCurrent;
+        this.device.last_reading_at = readingAt;
     }
 
     /**
@@ -196,7 +224,15 @@ export class EnergyGaugeComponent implements OnInit, OnDestroy {
             segments: gauges
         };
 
+        if (this.water && !!this.device.last_reading_total) {
+            this.configureFlowGauge(this.device.last_reading_total);
+        }
+        else if (!this.water && !!this.device.last_reading_total && !!this.device.last_reading_current) {
+            this.configureEnergyGauge(this.device.last_reading_total, this.device.last_reading_current);
+        }
+
         this.refreshGauge();
+
         if (!!this.refresh) {
             this.startRefreshTimer();
         }

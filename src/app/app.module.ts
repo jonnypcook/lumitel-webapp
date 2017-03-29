@@ -5,6 +5,7 @@ import {FormsModule}   from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {DropdownModule} from 'ng2-bootstrap/dropdown';
+import {TooltipModule} from 'ng2-bootstrap/tooltip';
 import {TabsModule} from 'ng2-bootstrap/tabs';
 import {NAV_DROPDOWN_DIRECTIVES} from './shared/nav-dropdown.directive';
 
@@ -13,6 +14,7 @@ import {SIDEBAR_TOGGLE_DIRECTIVES} from './shared/sidebar.directive';
 import {AsideToggleDirective} from './shared/aside.directive';
 import {BreadcrumbsComponent} from './shared/breadcrumb.component';
 import {SummaryComponent} from './shared/summary.component';
+import {MenuInstallationComponent} from './menu-installation/menu-installation.component';
 
 // http module
 import {HttpModule} from '@angular/http';
@@ -30,6 +32,7 @@ import {AuthorizationService} from './common/services/authorization.service';
 import {CanActivateAuthGuard}          from './guards/can-activate-auth-guard';
 import {CanActivatePermissionGuard} from './guards/can-activate-permission-guard';
 import {CanActivateRoleGuard} from './guards/can-activate-role-guard';
+import {CanActivateDevicesGuard} from './guards/can-activate-devices-guard';
 
 // global notifications (growl style)
 import {ToastrModule} from 'toastr-ng2';
@@ -49,6 +52,7 @@ import {selectedItem} from './common/stores/selectedItem.store';
         FormsModule,
         AppRoutingModule,
         DropdownModule.forRoot(),
+        TooltipModule.forRoot(),
         TabsModule.forRoot(),
         ChartsModule,
         HttpModule,
@@ -63,7 +67,8 @@ import {selectedItem} from './common/stores/selectedItem.store';
         BreadcrumbsComponent,
         SIDEBAR_TOGGLE_DIRECTIVES,
         AsideToggleDirective,
-        SummaryComponent
+        SummaryComponent,
+        MenuInstallationComponent
     ],
     providers: [{
         provide: LocationStrategy,
@@ -73,7 +78,8 @@ import {selectedItem} from './common/stores/selectedItem.store';
         AuthorizationService,
         CanActivateAuthGuard,
         CanActivatePermissionGuard,
-        CanActivateRoleGuard],
+        CanActivateRoleGuard,
+        CanActivateDevicesGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {

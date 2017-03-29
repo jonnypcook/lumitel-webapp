@@ -3,7 +3,10 @@ import { Routes, RouterModule }             from '@angular/router';
 
 import { OverviewComponent }            from '../overview/overview.component';
 import { InstallationsComponent }            from './installations.component';
+import { InstallationSettingsComponent } from '../installation-settings/installation-settings.component';
+import { EmergencyComponent } from '../emergency/emergency.component';
 import { DevicesComponent } from "../devices/devices.component";
+import {CanActivateDevicesGuard} from "../guards/can-activate-devices-guard";
 
 const routes: Routes = [
     {
@@ -16,7 +19,7 @@ const routes: Routes = [
     {
         path: ':iid',
         data: {
-            title: 'Installations'
+            title: 'Installation'
         },
         children: [
             {
@@ -32,10 +35,25 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'devices',
+                path: 'devices/:type',
                 component: DevicesComponent,
+                canActivate: [CanActivateDevicesGuard],
                 data: {
-                    title: 'Overview'
+                    title: 'Devices'
+                }
+            },
+            {
+                path: 'settings',
+                component: InstallationSettingsComponent,
+                data: {
+                    title: 'Settings'
+                }
+            },
+            {
+                path: 'emergency',
+                component: EmergencyComponent,
+                data: {
+                    title: 'Emergency Reports'
                 }
             },
             {

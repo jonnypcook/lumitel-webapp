@@ -50,7 +50,6 @@ export class InstallationBaseComponent implements OnInit, OnDestroy {
      * @param installationId
      */
     prepInstallation(action: any, installationId: number) {
-        console.log(action);
         if (!!action && action.name && action.installation_id === installationId) {
             this.installationObject = action;
             this.installationLoaded = true;

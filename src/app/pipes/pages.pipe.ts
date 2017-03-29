@@ -10,6 +10,10 @@ export class PagesPipe implements PipeTransform {
             return items;
         }
 
+        if (!items) {
+            return [];
+        }
+
         let lower:number = (pageNumber - 1) * itemsPerPage;
         let upper:number = (pageNumber) * itemsPerPage;
 
