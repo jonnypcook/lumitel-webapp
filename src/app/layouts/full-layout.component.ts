@@ -63,6 +63,7 @@ export class FullLayoutComponent implements OnInit, OnDestroy {
                             }
                         });
                         currentRoute = route;
+                        // console.log(currentRoute.);
                     }
                 })
             } while(currentRoute);

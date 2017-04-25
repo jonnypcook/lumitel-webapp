@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class MenuInstallationComponent implements OnInit {
     @Input() public installation: Installation;
     @Input() public activeInstallationId: number;
+    @Input() public routeEnd: string;
 
     constructor(private router: Router) {
     }

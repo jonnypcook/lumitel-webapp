@@ -92,32 +92,32 @@ export class EnergyGaugeComponent implements OnInit, OnDestroy {
             return;
         }
 
-        // this.deviceService.loadLatestDeviceData(this.device.device_id, DeviceDataType.energy)
-        //     .subscribe(deviceData => {
-        //         if (!deviceData) {
-        //             return;
-        //         }
-        //
-        //         if (this.water) {
-        //             this.configureFlowGauge(deviceData.total_day_use);
-        //         } else {
-        //             this.configureEnergyGauge(deviceData.total_day_use, deviceData.current_use);
-        //         }
-        //
-        //         let action = {
-        //             type: UPDATE_INSTALLATION_MONITOR, payload: {
-        //                 device_id: this.device.device_id,
-        //                 data: {
-        //                     last_reading_total: deviceData.total_day_use,
-        //                     last_reading_current: deviceData.current_use,
-        //                     last_reading_at: new Date(deviceData.utc_time),
-        //                 }
-        //             }
-        //         };
-        //         this.store.dispatch(action);
-        //
-        //         // this.updateDevice(deviceData.total_day_use, deviceData.current_use, new Date(deviceData.utc_time))
-        //     });
+        this.deviceService.loadLatestDeviceData(this.device.device_id, DeviceDataType.energy)
+            .subscribe(deviceData => {
+                if (!deviceData) {
+                    return;
+                }
+
+                if (this.water) {
+                    this.configureFlowGauge(deviceData.total_day_use);
+                } else {
+                    this.configureEnergyGauge(deviceData.total_day_use, deviceData.current_use);
+                }
+
+                let action = {
+                    type: UPDATE_INSTALLATION_MONITOR, payload: {
+                        device_id: this.device.device_id,
+                        data: {
+                            last_reading_total: deviceData.total_day_use,
+                            last_reading_current: deviceData.current_use,
+                            last_reading_at: new Date(deviceData.utc_time),
+                        }
+                    }
+                };
+                this.store.dispatch(action);
+
+                // this.updateDevice(deviceData.total_day_use, deviceData.current_use, new Date(deviceData.utc_time))
+            });
     }
 
     /**
@@ -231,7 +231,7 @@ export class EnergyGaugeComponent implements OnInit, OnDestroy {
             this.configureEnergyGauge(this.device.last_reading_total, this.device.last_reading_current);
         }
 
-        this.refreshGauge();
+        // this.refreshGauge();
 
         if (!!this.refresh) {
             this.startRefreshTimer();

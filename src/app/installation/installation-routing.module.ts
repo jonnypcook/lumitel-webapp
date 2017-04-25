@@ -4,6 +4,7 @@ import { Routes, RouterModule }             from '@angular/router';
 import { OverviewComponent }            from '../overview/overview.component';
 import { InstallationsComponent }            from './installations.component';
 import { InstallationSettingsComponent } from '../installation-settings/installation-settings.component';
+import { InstallationReportsComponent } from '../installation-reports/installation-reports.component';
 import { EmergencyComponent } from '../emergency/emergency.component';
 import { DevicesComponent } from "../devices/devices.component";
 import {CanActivateDevicesGuard} from "../guards/can-activate-devices-guard";
@@ -54,6 +55,13 @@ const routes: Routes = [
                 component: EmergencyComponent,
                 data: {
                     title: 'Emergency Reports'
+                }
+            },
+            {
+                path: 'reports',
+                component: InstallationReportsComponent,
+                data: {
+                    title: 'Reports'
                 }
             },
             {

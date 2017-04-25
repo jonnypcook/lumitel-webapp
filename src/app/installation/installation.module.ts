@@ -22,6 +22,7 @@ import {TooltipModule} from 'ng2-bootstrap/tooltip';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {InstallationSettingsComponent} from "../installation-settings/installation-settings.component";
 import {EmergencyComponent} from "../emergency/emergency.component";
+import {InstallationReportsComponent} from '../installation-reports/installation-reports.component';
 
 
 
@@ -37,7 +38,8 @@ import {EmergencyComponent} from "../emergency/emergency.component";
         LoaderComponent,
         TargetsWidgetComponent,
         InstallationSettingsComponent,
-        EmergencyComponent
+        EmergencyComponent,
+        InstallationReportsComponent
     ],
     providers: []
 })

@@ -86,8 +86,8 @@
             <div class="card-group">
                 <div class="card" *ngFor="let monitor of installationObject.monitors" >
                     <div class="card-block">
-                        <app-energy-gauge *ngIf="monitor.deviceType.device_type_id === 6" [device]="monitor" [energyMax]="100" [refresh]="120"></app-energy-gauge>
-                        <app-energy-gauge *ngIf="monitor.deviceType.device_type_id === 5" [device]="monitor" [target]="15" [water]="true" [refresh]="120"></app-energy-gauge>
+                        <app-energy-gauge *ngIf="monitor.deviceType.device_type_id === 6" [device]="monitor" [energyMax]="100" [refresh]="30"></app-energy-gauge>
+                        <app-energy-gauge *ngIf="monitor.deviceType.device_type_id === 5" [device]="monitor" [target]="15" [water]="true" [refresh]="30"></app-energy-gauge>
                         <small class="text-muted text-uppercase font-weight-bold">{{ monitor.label }}<br>{{monitor.last_reading_at | date:'MMM d, HH:mm'}}</small>
                     </div>
                 </div>
