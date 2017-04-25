@@ -1,14 +1,26 @@
 import { NgModule }                 from '@angular/core';
-import { Routes,
-    RouterModule }             from '@angular/router';
+import { Routes, RouterModule }             from '@angular/router';
 
-import { OverviewComponent }            from './overview.component';
+import { OverviewComponent }            from '../overview/overview.component';
+import { InstallationsComponent }            from './installations.component';
+import { InstallationSettingsComponent } from '../installation-settings/installation-settings.component';
+import { InstallationReportsComponent } from '../installation-reports/installation-reports.component';
+import { EmergencyComponent } from '../emergency/emergency.component';
+import { DevicesComponent } from "../devices/devices.component";
+import {CanActivateDevicesGuard} from "../guards/can-activate-devices-guard";
 
 const routes: Routes = [
     {
+        path: '',
+        data: {
+            title: 'Installations'
+        },
+        component: InstallationsComponent
+    },
+    {
         path: ':iid',
         data: {
-            title: 'Example Pages'
+            title: 'Installation'
         },
         children: [
             {
@@ -24,8 +36,37 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'devices/:type',
+                component: DevicesComponent,
+                canActivate: [CanActivateDevicesGuard],
+                data: {
+                    title: 'Devices'
+                }
+            },
+            {
+                path: 'settings',
+                component: InstallationSettingsComponent,
+                data: {
+                    title: 'Settings'
+                }
+            },
+            {
+                path: 'emergency',
+                component: EmergencyComponent,
+                data: {
+                    title: 'Emergency Reports'
+                }
+            },
+            {
+                path: 'reports',
+                component: InstallationReportsComponent,
+                data: {
+                    title: 'Reports'
+                }
+            },
+            {
                 path: 'area',
-                loadChildren: 'app/area/area.module#AreaModule'
+                loadChildren: '../area/area.module#AreaModule'
             }
         ]
     }
@@ -36,8 +77,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 export class InstallationRoutingModule {
-    constructor () {
-        console.log('InstallationRoutingModule:');
-    }
-
 }

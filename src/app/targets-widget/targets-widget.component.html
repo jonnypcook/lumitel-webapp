@@ -1,0 +1,322 @@
+<div class="card">
+  <div class="card-header">
+    Energy Consumption, Targets &amp; Events
+  </div>
+  <div class="card-block">
+    <div class="row">
+      <div class="col-sm-12 col-lg-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="callout callout-danger">
+              <small class="text-muted">Consumed Power</small>
+              <br>
+              <strong class="h4">{{ totalPower | number:'1.1-1' }} kWh</strong>
+            </div>
+          </div><!--/.col-->
+          <div class="col-sm-6">
+            <div class="callout callout-primary">
+              <small class="text-muted">Water Usage</small>
+              <br>
+              <strong class="h4">{{ totalWater | number:'1.1-1'}} Litres</strong>
+            </div>
+          </div><!--/.col-->
+        </div><!--/.row-->
+        <hr class="mt-0">
+        <ul class="horizontal-bars">
+          <li>
+            <div class="title">
+              Today
+            </div>
+            <div class="bars">
+              <div class="progress progress-xs" tooltip="Power {{ totalPower | number:'1.0-0' }}kWh, Target = {{ targetPower | number:'1.0-0' }}kWh">
+                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="sanitizePercentage(percentagePower)" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress progress-xs" tooltip="Water {{ totalWater | number:'1.0-0' }}L, Target = {{ targetWater | number:'1.0-0' }}L">
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="sanitizePercentage(percentageWater)" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              Wednesday
+            </div>
+            <div class="bars">
+              <div class="progress progress-xs" tooltip="Power {{ weekly[0].power | number:'1.0-0' }}kWh, Target = {{ weekly[0].targetPower | number:'1.0-0' }}kWh">
+                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[0].power, weekly[0].targetPower))" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress progress-xs" tooltip="Water {{ weekly[0].water | number:'1.0-0' }}L, Target = {{ weekly[0].targetWater | number:'1.0-0' }}L">
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[0].water, weekly[0].targetWater))" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              Tuesday
+            </div>
+            <div class="bars">
+              <div class="progress progress-xs" tooltip="Power {{ weekly[1].power | number:'1.0-0' }}kWh, Target = {{ weekly[1].targetPower | number:'1.0-0' }}kWh">
+                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[1].power, weekly[1].targetPower))" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress progress-xs" tooltip="Water {{ weekly[1].water | number:'1.0-0' }}L, Target = {{ weekly[1].targetWater | number:'1.0-0' }}L">
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[1].water, weekly[1].targetWater))" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              Monday
+            </div>
+            <div class="bars">
+              <div class="progress progress-xs" tooltip="Power {{ weekly[2].power | number:'1.0-0' }}kWh, Target = {{ weekly[2].targetPower | number:'1.0-0' }}kWh">
+                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[2].power, weekly[2].targetPower))" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress progress-xs" tooltip="Water {{ weekly[2].water | number:'1.0-0' }}L, Target = {{ weekly[2].targetWater | number:'1.0-0' }}L">
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[2].water, weekly[2].targetWater))" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              Sunday
+            </div>
+            <div class="bars">
+              <div class="progress progress-xs" tooltip="Power {{ weekly[3].power | number:'1.0-0' }}kWh, Target = {{ weekly[3].targetPower | number:'1.0-0' }}kWh">
+                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[3].power, weekly[3].targetPower))" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress progress-xs" tooltip="Water {{ weekly[3].water | number:'1.0-0' }}L, Target = {{ weekly[3].targetWater | number:'1.0-0' }}L">
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[3].water, weekly[3].targetWater))" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              Saturday
+            </div>
+            <div class="bars">
+              <div class="progress progress-xs" tooltip="Power {{ weekly[4].power | number:'1.0-0' }}kWh, Target = {{ weekly[4].targetPower | number:'1.0-0' }}kWh">
+                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[4].power, weekly[4].targetPower))" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress progress-xs" tooltip="Water {{ weekly[4].water | number:'1.0-0' }}L, Target = {{ weekly[4].targetWater | number:'1.0-0' }}L">
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[4].water, weekly[4].targetWater))" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              Friday
+            </div>
+            <div class="bars">
+              <div class="progress progress-xs" tooltip="Power {{ weekly[5].power | number:'1.0-0' }}kWh, Target = {{ weekly[5].targetPower | number:'1.0-0' }}kWh">
+                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[5].power, weekly[5].targetPower))" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress progress-xs" tooltip="Water {{ weekly[5].water | number:'1.0-0' }}L, Target = {{ weekly[5].targetWater | number:'1.0-0' }}L">
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="sanitizePercentage(calculatePercentage(weekly[5].water, weekly[5].targetWater))" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li class="legend">
+            <span class="badge badge-pill badge-danger"></span> <small>Power Used</small> &nbsp; <span class="badge badge-pill badge-primary"></span> <small>Water Used</small>
+          </li>
+        </ul>
+      </div><!--/.col-->
+      <div class="col-sm-6 col-lg-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="callout callout-success">
+              <small class="text-muted">Carbon Footprint</small>
+              <br>
+              <strong class="h4">{{ totalCarbon | number:'1.1-1' }} kg</strong>
+            </div>
+          </div><!--/.col-->
+          <div class="col-sm-6">
+            <div class="callout callout-warning">
+              <small class="text-muted">Methane Footprint</small>
+              <br>
+              <strong class="h4">{{ totalMethane | number:'1.1-3' }} kg</strong>
+            </div>
+          </div><!--/.col-->
+        </div><!--/.row-->
+        <hr class="mt-0">
+        <ul class="horizontal-bars type-2">
+          <li>
+            <i class="icon-power"></i>
+            <span class="title">Power</span>
+            <span class="value">{{ percentagePower | number:'1.0-0'}}% of Target <span class="text-muted small">({{ targetPower | number:'1.1-1'}} kWh)</span></span>
+            <div class="bars">
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="sanitizePercentage(percentagePower)" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <i class="fa fa-tint"></i>
+            <span class="title">Water usage</span>
+            <span class="value">{{ percentageWater | number:'1.0-0'}}% of target <span class="text-muted small">({{ targetWater | number:'1.1-1'}} Litres)</span></span>
+            <div class="bars">
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="sanitizePercentage(percentageWater)" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <i class="fa fa-flash"></i>
+            <span class="title">Carbon (CO<sub>2</sub>)</span>
+            <span class="value">{{ percentageCarbon | number:'1.0-0'}}% of target <span class="text-muted small">({{ targetCarbon | number:'1.1-1'}} kg)</span></span>
+            <div class="bars">
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="sanitizePercentage(percentageCarbon)" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <i class="icon-fire"></i>
+            <span class="title">Methane (CH<sub>4</sub>)</span>
+            <span class="value">{{ percentageMethane | number:'1.0-0'}}% of target <span class="text-muted small">({{ targetMethane | number:'1.1-3'}} kg)</span></span>
+            <div class="bars">
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-warning" role="progressbar" [style.width.%]="sanitizePercentage(percentageMethane)" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </li>
+          <li class="divider text-center">
+            <button type="button" class="btn btn-sm btn-link text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="show more"><i class="icon-options"></i></button>
+          </li>
+        </ul>
+      </div><!--/.col-->
+      <div class="col-sm-6 col-lg-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="callout">
+              <small class="text-muted">Events</small>
+              <br>
+              <strong class="h4">0</strong>
+            </div>
+          </div><!--/.col-->
+          <div class="col-sm-6">
+            <div class="callout callout-primary">
+              <small class="text-muted">Alerts</small>
+              <br>
+              <strong class="h4">7</strong>
+            </div>
+          </div><!--/.col-->
+        </div><!--/.row-->
+        <hr class="mt-0">
+        <ul class="icons-list">
+          <li>
+            <i class="icon-drop bg-warning"></i>
+            <div class="desc">
+              <div class="title">Water threshold</div>
+              <small>Approaching target (13 litres)</small>
+            </div>
+            <div class="value">
+              <div class="small text-muted">Today</div>
+              <strong>5:01pm</strong>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i>
+              </button>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-flash bg-danger"></i>
+            <div class="desc">
+              <div class="title">Emergency trigger</div>
+              <small>Device id: 1234 | Lobby</small>
+            </div>
+            <div class="value">
+              <div class="small text-muted">Today</div>
+              <strong>10:24am</strong>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i>
+              </button>
+            </div>
+          </li>
+          <li>
+            <i class="icon-list bg-info"></i>
+            <div class="desc">
+              <div class="title">Lighting plan updated</div>
+              <small>Adjustments made to lighting plan</small>
+            </div>
+            <div class="value">
+              <div class="small text-muted">Yesterday</div>
+              <strong>8:00am</strong>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i>
+              </button>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-warning bg-danger"></i>
+            <div class="desc">
+              <div class="title">Legionella warning</div>
+              <small>Potential legionella issues detected</small>
+            </div>
+            <div class="value">
+              <div class="small text-muted">Yesterday</div>
+              <strong>6:53am</strong>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i>
+              </button>
+            </div>
+          </li>
+          <li>
+            <i class="icon-list bg-info"></i>
+            <div class="desc">
+              <div class="title">Device plan updated</div>
+              <small>Adjustments made to device plan</small>
+            </div>
+            <div class="value">
+              <div class="small text-muted">10th November</div>
+              <strong>4:00pm</strong>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i>
+              </button>
+            </div>
+          </li>
+          <li>
+            <i class="icon-social-spotify bg-success"></i>
+            <div class="desc">
+              <div class="title">Item addition</div>
+              <small>Heating device added in staff room</small>
+            </div>
+            <div class="value">
+              <div class="small text-muted">10th November</div>
+              <strong>3:31pm</strong>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i>
+              </button>
+            </div>
+          </li>
+          <li>
+            <i class="icon-social-spotify bg-success"></i>
+            <div class="desc">
+              <div class="title">Item addition</div>
+              <small>Heating device added in toilet</small>
+            </div>
+            <div class="value">
+              <div class="small text-muted">10th November</div>
+              <strong>3:31pm</strong>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i>
+              </button>
+            </div>
+          </li>
+          <li class="divider text-xs-center">
+            <button type="button" class="btn btn-sm btn-link text-muted" data-toggle="tooltip" data-placement="top" title="show more"><i class="icon-options"></i>
+            </button>
+          </li>
+        </ul>
+      </div><!--/.col-->
+    </div><!--/.row-->
+    <br>
+  </div>
+</div>

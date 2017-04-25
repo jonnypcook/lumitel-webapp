@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 import {AppStore} from '../models/appstore.model';
 import {Item} from '../models/item.model';
 
+import {ADD_ITEM, CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM} from "../stores/actions";
+
 const BASE_URL = 'http://localhost:3000/items/';
 const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
@@ -21,7 +23,7 @@ export class ItemsService {
     loadItems() {
         this.http.get(BASE_URL)
             .map(res => res.json())
-            .map(payload => ({ type: 'ADD_ITEMS', payload }))
+            .map(payload => ({ type: ADD_ITEM, payload }))
             .subscribe(action => this.store.dispatch(action));
     }
 
@@ -32,17 +34,17 @@ export class ItemsService {
     createItem(item: Item) {
         this.http.post(`${BASE_URL}`, JSON.stringify(item), HEADER)
             .map(res => res.json())
-            .map(payload => ({ type: 'CREATE_ITEM', payload }))
+            .map(payload => ({ type: CREATE_ITEM, payload }))
             .subscribe(action => this.store.dispatch(action));
     }
 
     updateItem(item: Item) {
         this.http.put(`${BASE_URL}${item.id}`, JSON.stringify(item), HEADER)
-            .subscribe(action => this.store.dispatch({ type: 'UPDATE_ITEM', payload: item }));
+            .subscribe(action => this.store.dispatch({ type: UPDATE_ITEM, payload: item }));
     }
 
     deleteItem(item: Item) {
         this.http.delete(`${BASE_URL}${item.id}`)
-            .subscribe(action => this.store.dispatch({ type: 'DELETE_ITEM', payload: item }));
+            .subscribe(action => this.store.dispatch({ type: DELETE_ITEM, payload: item }));
     }
 }

@@ -1,0 +1,12 @@
+sk-wave {
+  &.no-margin
+  {
+    .wave-spinner {
+      margin: 0!important;
+    }
+  }
+
+  &.abs {
+    position: absolute
+  }
+}

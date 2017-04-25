@@ -1,13 +1,12 @@
 import { NgModule }                 from '@angular/core';
-import { Routes,
-         RouterModule }             from '@angular/router';
+import { Routes, RouterModule }             from '@angular/router';
 
 //Layouts
 import { FullLayoutComponent }      from './layouts/full-layout.component';
 import { SimpleLayoutComponent }    from './layouts/simple-layout.component';
 
 //Guards
-import { CanActivateAuthGuard }          from './shared/can-activate-auth-guard';
+import { CanActivateAuthGuard }          from './guards/can-activate-auth-guard';
 
 export const routes: Routes = [
     {
@@ -19,17 +18,17 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
+            title: 'Home',
         },
         canActivate: [CanActivateAuthGuard],
         children: [
             {
                 path: 'dashboard',
-                loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
+                loadChildren: './dashboard/dashboard.module#DashboardModule'
             },
             {
                 path: 'installation',
-                loadChildren: 'app/installation/installation.module#InstallationModule'
+                loadChildren: './installation/installation.module#InstallationModule'
             }
         ]
     },
@@ -42,7 +41,7 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                loadChildren: 'app/pages/pages.module#PagesModule',
+                loadChildren: './pages/pages.module#PagesModule',
             }
         ]
     }

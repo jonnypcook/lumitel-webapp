@@ -1,8 +1,9 @@
-import { NgModule }             from '@angular/core';
-import { Routes,
-         RouterModule }         from '@angular/router';
+import {NgModule}             from '@angular/core';
+import {Routes, RouterModule}         from '@angular/router';
 
-import { DashboardComponent }   from './dashboard.component';
+import {DashboardComponent}   from './dashboard.component';
+import {CanActivatePermissionGuard} from '../guards/can-activate-permission-guard';
+import {CanActivateRoleGuard} from '../guards/can-activate-role-guard';
 
 const routes: Routes = [
     {
@@ -18,4 +19,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class DashboardRoutingModule {}
+export class DashboardRoutingModule {
+}

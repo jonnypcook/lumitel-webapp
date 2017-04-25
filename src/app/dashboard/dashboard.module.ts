@@ -1,20 +1,18 @@
-import { NgModule }                 from '@angular/core';
-import { ChartsModule }             from 'ng2-charts/ng2-charts';
+import { NgModule } from '@angular/core';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
-import { DashboardComponent }       from './dashboard.component';
-import { DashboardRoutingModule }   from './dashboard-routing.module';
-import { CommonModule}         from '@angular/common';
-import { PaginationModule }               from 'ng2-bootstrap/components/pagination';
-import { InstallationListComponent } from '../installation/installation-list.component';
-import { Bob } from './bob.component';
+import { DashboardComponent } from './dashboard.component';
+import { DashboardRoutingModule } from './dashboard-routing.module';
+import { InstallationListModule } from '../installation-list/installation-list.module';
 
 @NgModule({
     imports: [
         DashboardRoutingModule,
         ChartsModule,
-        CommonModule,
-        PaginationModule
+        DropdownModule,
+        InstallationListModule
     ],
-    declarations: [ DashboardComponent, InstallationListComponent, Bob ]
+    declarations: [ DashboardComponent ]
 })
 export class DashboardModule { }

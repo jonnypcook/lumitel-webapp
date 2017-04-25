@@ -1,0 +1,30 @@
+<table class="table table-bordered table-condensed table-hover table-click">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Level</th>
+        <th>Date registered</th>
+        <th>Type</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let space of spaces | async | pages:currentPage:itemsPerPage" (click)="spaceSelected(space)">
+        <td>{{ space.name }}</td>
+        <td>{{ space.level_label }}</td>
+        <td>{{ space.created | date:'fullDate'}}</td>
+        <td>Floor <small><a href="javascript:">View Floor Plan</a></small></td>
+        <td>
+            <span class="tag tag-success">Active</span>
+        </td>
+    </tr>
+    <tr *ngIf="loading()">
+        <td colspan="5">
+            Please wait loading ...
+        </td>
+    </tr>
+    </tbody>
+</table>
+<nav *ngIf="currentPage > 0">
+    <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" [itemsPerPage]="itemsPerPage"></pagination>
+</nav>

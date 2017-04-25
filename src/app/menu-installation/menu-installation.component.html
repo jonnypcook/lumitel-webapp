@@ -1,0 +1,44 @@
+<li class="divider"></li>
+<div *ngIf="isLoading()">
+    <li class="nav-title text-truncate">
+        Loading Installation ...
+    </li>
+</div>
+<div *ngIf="!isLoading()">
+    <li class="nav-title text-truncate">
+        {{ installation.name }}
+    </li>
+    <li class="nav-item nt open">
+        <a class="nav-link active clickable" (click)="navigate('overview');"><i class="icon-speedometer"></i> Summary</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link clickable" (click)="navigate('settings');"><i class="icon-settings"></i> Settings</a>
+    </li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Devices</a>
+        <ul class="nav-dropdown-items">
+            <li class="nav-item">
+                <a class="nav-link clickable" (click)="navigate('devices', 'lighting');"><i class="icon-bulb"></i> Lighting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link clickable" (click)="navigate('devices', 'hvac');"><i class="fa fa-flash"></i> HVAC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link clickable" (click)="navigate('devices', 'water');"><i class="fa fa-tint"></i> Water</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link clickable" (click)="navigate('devices', 'devices');"><i class="fa fa-plug"></i> Devices</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link clickable" (click)="navigate('devices', 'heating');"><i class="icon-fire"></i> Hot Water</a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link clickable" (click)="navigate('emergency');"><i class="icon-docs"></i> Emergency reports</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link clickable" (click)="navigate('reports');"><i class="icon-graph"></i> Reports</a>
+    </li>
+</div>
+

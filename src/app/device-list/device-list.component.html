@@ -1,0 +1,35 @@
+<table class="table table-bordered table-condensed table-hover table-click">
+  <thead>
+  <tr>
+    <th>Label</th>
+    <th>Type</th>
+    <th>Serial</th>
+    <th>Added</th>
+    <th>Status</th>
+    <th>Command</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let device of devices | pages:currentPage:itemsPerPage">
+    <td>{{ device.label }}</td>
+    <td>{{ device.deviceType.name }}</td>
+    <td>{{ device.provider.serial }}</td>
+    <td>{{ device.created | date:'fullDate' }}</td>
+    <td><span class="tag tag-success">Active</span></td>
+    <td><label class="switch switch-text switch-pill switch-success" style="position: absolute">
+      <input type="checkbox" class="switch-input" checked="">
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+      <span class="switch-handle"></span>
+    </label></td>
+  </tr>
+
+  <tr *ngIf="loading">
+    <td colspan="6">
+      Please wait loading ...
+    </td>
+  </tr>
+  </tbody>
+</table>
+<nav *ngIf="currentPage > 0">
+  <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" [itemsPerPage]="itemsPerPage"></pagination>
+</nav>
